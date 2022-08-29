@@ -62,5 +62,8 @@ dependencies {
   //data binding
   implementation 'com.android.databinding:viewbinding:4.0.1'
 
+  // Lottie
+  implementation "com.airbnb.android:lottie:3.4.0"
+
 
 }
