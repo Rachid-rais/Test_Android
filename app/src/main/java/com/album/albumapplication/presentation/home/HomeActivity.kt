@@ -1,5 +1,7 @@
 package com.album.albumapplication.presentation.home
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -18,6 +20,16 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         binding.apply {
             setContentView(root)
+        }
+    }
+    companion object {
+        const val TAG = "HomeActivity"
+        fun open(ctx: Context) {
+            (ctx as AppCompatActivity).startActivity(Intent(ctx, HomeActivity::class.java))
+            ctx.overridePendingTransition(
+                R.anim.slide_in_up,
+                R.anim.no_change
+            )
         }
     }
 }

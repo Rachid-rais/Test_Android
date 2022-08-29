@@ -5,6 +5,9 @@ import android.content.SharedPreferences
 
 object PreferenceHelper {
 
+    private const val SHARED_PREFERENCES_NAME = "AlbumPreferences"
+
+    fun albumPrefs(context: Context): SharedPreferences = context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     private inline fun SharedPreferences.edit(operation: (SharedPreferences.Editor) -> Unit) {
         val editor = this.edit()

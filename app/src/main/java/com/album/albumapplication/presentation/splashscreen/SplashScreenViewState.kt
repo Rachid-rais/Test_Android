@@ -1,4 +1,9 @@
 package com.album.albumapplication.presentation.splashscreen
 
-class SplashScreenViewState {
+sealed class SplashScreenViewState {
+
+    object ContentAlreadyLoaded : SplashScreenViewState()
+    object ContentLoaded : SplashScreenViewState()
+    object Error : SplashScreenViewState()
+    object NoInternet : SplashScreenViewState()
 }

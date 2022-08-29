@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">AlbumApplication</string>
+  <string name="error_verify_connection_internet">Vous devez vous connecter sur internet au moin une fois pour télécharger la liste</string>
 </resources>
