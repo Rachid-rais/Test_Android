@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.album.albumapplication.data.mappers.NetworkAlbumToDatabaseAlbumMapper
+import com.album.albumapplication.data.remote.model.AlbumNetwork
 import com.album.albumapplication.domain.BaseRepository
 import com.album.albumapplication.utils.Constants
 import com.album.albumapplication.utils.NetworkUtils
@@ -21,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val repository: BaseRepository,
+    private val albumMapper: NetworkAlbumToDatabaseAlbumMapper,
     private val albumPrefs: SharedPreferences
 ) : ViewModel() {
     private val _state: MutableLiveData<SplashScreenViewState> = MutableLiveData()
@@ -46,7 +49,7 @@ class SplashViewModel @Inject constructor(
                 Result.Status.SUCCESS -> {
                     // Saving datas into dataBase and going Home.
                     if (apiAlbum.data != null) {
-                       // saveAlbumList(apiAlbum.data)
+                        saveAlbumList(apiAlbum.data)
                     }
                 }
                 Result.Status.ERROR -> {
@@ -60,6 +63,16 @@ class SplashViewModel @Inject constructor(
             }
 
         }
+    }
+
+    private suspend fun saveAlbumList(data: List<AlbumNetwork>) {
+        saveAlbumLoaded()
+        for (album in data) {
+            repository.insertAlbum(
+                albumMapper.map(album)
+            )
+        }
+        _state.postValue(SplashScreenViewState.ContentLoaded)
     }
 
     private fun isAlbumLoaded(): Boolean {
