@@ -32,7 +32,7 @@ class SplashViewModel @Inject constructor(
     fun isFirstLaunch(ctx: Context) {
         val appFirstTime = isAlbumLoaded()
         if (NetworkUtils.hasInternetConnection(ctx)) {
-            loadAlbum(ctx)
+            loadAlbum()
         }else if(appFirstTime){
             // Play animation and going Home.
             _state.postValue(SplashScreenViewState.ContentAlreadyLoaded)
@@ -42,7 +42,7 @@ class SplashViewModel @Inject constructor(
     }
 
     @VisibleForTesting
-    fun loadAlbum(ctx: Context) {
+    fun loadAlbum() {
         viewModelScope.launch {
             val apiAlbum = repository.getAlbumListNetwork()
             when (apiAlbum.status) {
@@ -59,7 +59,6 @@ class SplashViewModel @Inject constructor(
                 Result.Status.LOADING -> {
 
                 }
-                else -> {}
             }
 
         }

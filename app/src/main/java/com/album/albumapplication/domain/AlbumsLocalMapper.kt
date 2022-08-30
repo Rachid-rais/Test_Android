@@ -12,7 +12,7 @@ class AlbumsLocalMapper {
 
     fun mapAlbum(input: AlbumLocal): Album {
         with(input) {
-            return Album(id = id!!,title= title,image = url)
+            return Album(id = id!!,title= title,image = thumbnailUrl)
         }
     }
 }
