@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.album.albumapplication.data.AlbumRepository
 import com.album.albumapplication.data.local.AlbumLocalDataSource
+import com.album.albumapplication.data.local.model.AlbumLocal
+import com.album.albumapplication.data.mappers.Mapper
 import com.album.albumapplication.data.remote.AlbumHomeRemote
 import com.album.albumapplication.data.remote.AlbumRemoteDatasource
+import com.album.albumapplication.domain.AlbumLocalMapper
 import com.album.albumapplication.domain.AlbumsLocalMapper
 import com.album.albumapplication.domain.BaseRepository
+import com.album.albumapplication.domain.model.Album
 import com.album.albumapplication.utils.Constants
 import com.album.albumapplication.utils.PreferenceHelper
 import com.google.gson.Gson
@@ -61,6 +65,9 @@ object AppModule {
     ) = AlbumRepository(localDatasource,remoteDatasource) as BaseRepository
 
     @Provides
-    fun provideLocalAlbumsToDomainMapper(): AlbumsLocalMapper =
-        AlbumsLocalMapper()
+    fun provideLocalAlbumToDomainMapper(): AlbumLocalMapper = AlbumLocalMapper()
+
+    @Provides
+    fun provideLocalAlbumsToDomainMapper(mapper: AlbumLocalMapper): AlbumsLocalMapper =
+        AlbumsLocalMapper(mapper)
 }

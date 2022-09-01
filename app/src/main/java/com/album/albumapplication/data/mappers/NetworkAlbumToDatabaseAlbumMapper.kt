@@ -4,8 +4,8 @@ import com.album.albumapplication.data.local.model.AlbumLocal
 import com.album.albumapplication.data.remote.model.AlbumNetwork
 import javax.inject.Inject
 
-class NetworkAlbumToDatabaseAlbumMapper @Inject constructor() {
-    fun map(input: AlbumNetwork): AlbumLocal {
+class NetworkAlbumToDatabaseAlbumMapper @Inject constructor() : Mapper<AlbumNetwork, AlbumLocal> {
+    override  fun map(input: AlbumNetwork): AlbumLocal {
         with(input) {
             return AlbumLocal(
                 id = id,

@@ -2,20 +2,20 @@ package com.album.albumapplication.presentation.splashscreen
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.album.albumapplication.data.AlbumRepository
 import com.album.albumapplication.data.mappers.NetworkAlbumToDatabaseAlbumMapper
 import com.album.albumapplication.data.remote.model.AlbumNetwork
-import com.album.albumapplication.domain.BaseRepository
 import com.album.albumapplication.utils.Constants
 import com.album.albumapplication.utils.NetworkUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import com.album.albumapplication.data.remote.model.Result
+import com.album.albumapplication.domain.BaseRepository
 import com.album.albumapplication.utils.PreferenceHelper.get
 import com.album.albumapplication.utils.PreferenceHelper.set
 import javax.inject.Inject
