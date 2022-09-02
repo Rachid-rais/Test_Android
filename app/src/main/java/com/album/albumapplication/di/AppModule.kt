@@ -2,6 +2,7 @@ package com.album.albumapplication.di
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.album.albumapplication.BuildConfig
 import com.album.albumapplication.data.AlbumRepository
 import com.album.albumapplication.data.local.AlbumLocalDataSource
 import com.album.albumapplication.data.local.model.AlbumLocal
@@ -43,7 +44,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
-        .baseUrl(Constants.BASE_URL)
+        .baseUrl(BuildConfig.base_url)
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
