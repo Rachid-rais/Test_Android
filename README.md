@@ -4,6 +4,9 @@ Bibliothèque utilise :
 
 <b>Retrofit</b> : pour les appels webservices.
 
+<b>Coroutines flow</b> : il nous permet de gére des valeurs asynchrones et qui évoluent au fil du temps .
+
+
 <b>Dagger Hilt</b> : pour l'injection de dépendances.
 
 <b>Room</b> : bibliothèque qui fournit une couche d'abstraction sur SQLite pour permettre un accès plus robuste à la base de données.
